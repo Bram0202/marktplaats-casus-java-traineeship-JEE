@@ -1,7 +1,9 @@
 import dao.GebruikerDao;
 import domain.Gebruiker;
+import frame.Window;
 
 import javax.persistence.EntityManager;
+import javax.swing.*;
 
 import static util.Util.mysql;
 
@@ -15,9 +17,8 @@ public class App {
         EntityManager em = mysql();
         GebruikerDao gebruikerDao = new GebruikerDao(em);
 
-//        System.out.println("Welkom bij Marktplaats Online!");
-//        System.out.println("[1] Login\n[2] Registreren");
-
-        gebruikerDao.insert(new Gebruiker("test@mail.com", "tester"));
+        new Window();
     }
+
+
 }

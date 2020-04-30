@@ -39,4 +39,16 @@ public class Gebruiker extends AbstractEntity {
     public void setNaam(String naam) {
         this.naam = naam;
     }
+
+    public String getEmailadres() {
+        return emailadres;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
 }
