@@ -1,19 +1,23 @@
-import java.util.Scanner;
+import dao.GebruikerDao;
+import domain.Gebruiker;
+
+import javax.persistence.EntityManager;
+
+import static util.Util.mysql;
 
 public class App {
 
-    private Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
-        new App(){};
+        new App() {};
     }
 
     App() {
-        System.out.println("Welkom. Wat is uw naam?");
-        String input = scanner.nextLine();
-    }
+        EntityManager em = mysql();
+        GebruikerDao gebruikerDao = new GebruikerDao(em);
 
-    private void clearConsole() {
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+//        System.out.println("Welkom bij Marktplaats Online!");
+//        System.out.println("[1] Login\n[2] Registreren");
+
+        gebruikerDao.insert(new Gebruiker("test@mail.com", "tester"));
     }
 }
