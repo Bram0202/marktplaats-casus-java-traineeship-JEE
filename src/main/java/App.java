@@ -1,9 +1,8 @@
 import dao.GebruikerDao;
 import domain.Gebruiker;
-import frame.Window;
+import frontend.LoginPagina;
 
 import javax.persistence.EntityManager;
-import javax.swing.*;
 
 import static util.Util.mysql;
 
@@ -17,8 +16,8 @@ public class App {
         EntityManager em = mysql();
         GebruikerDao gebruikerDao = new GebruikerDao(em);
 
-        new Window();
+        new LoginPagina();
+        gebruikerDao.insert(new Gebruiker("test@mail.com", "Tester"));
     }
-
 
 }
