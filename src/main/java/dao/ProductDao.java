@@ -1,11 +1,11 @@
 package dao;
 
-import domain.Gebruiker;
 import domain.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+//TODO: lijst met producten tonen aan gebruiker.
 public class ProductDao {
     private final EntityManager em;
 

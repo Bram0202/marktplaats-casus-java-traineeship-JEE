@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "categorieen")
+@Table(name = "categorieen", uniqueConstraints={@UniqueConstraint(columnNames={"naam"})})
 public class Categorie extends AbstractEntity {
 
     @NotNull
@@ -23,5 +23,14 @@ public class Categorie extends AbstractEntity {
 
     public void addProduct(Product product) {
         this.producten.add(product);
+    }
+
+    @Override
+    public String toString() {
+        return naam;
+    }
+
+    public String getNaam() {
+        return naam;
     }
 }

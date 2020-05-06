@@ -3,6 +3,8 @@ package dao;
 import domain.Categorie;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
 public class CategorieDao {
@@ -12,11 +14,16 @@ public class CategorieDao {
         this.em = em;
     }
 
+
     // CREATE (INSERT)
     public void insert(Categorie c) {
-        em.getTransaction().begin();
-        em.persist(c);
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.persist(c);
+            em.getTransaction().commit();
+        } catch (RollbackException | NonUniqueResultException e) {
+            System.out.println(e); //TODO: De al bestaande categorie teruggeven aan de gebruiker.
+        }
     }
 
     // READ (SELECT)
