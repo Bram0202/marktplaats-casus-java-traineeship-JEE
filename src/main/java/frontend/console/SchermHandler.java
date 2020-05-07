@@ -10,60 +10,52 @@ import static util.Util.logger;
 
 public class SchermHandler {
 
-    private String titel;
-    private String subtitel;
-    private String menuOptie1;
-    private String menuOptie2;
-    private String menuOptie3;
-    private String menuOptie4;
-    private AbstractPagina menuOptie1Link;
-    private AbstractPagina menuOptie2Link;
-    private AbstractPagina menuOptie3Link;
-    private AbstractPagina menuOptie4Link;
-
     private final Logger log = logger(getClass());
+    private final AbstractPagina menuOptie1Link;
+    private final AbstractPagina menuOptie2Link;
+    private final AbstractPagina menuOptie3Link;
+    private final AbstractPagina menuOptie4Link;
+    private final AbstractPagina huidigePagina;
 
+    public SchermHandler(AbstractPagina abstractPagina) {
+        this.huidigePagina = abstractPagina;
+        this.menuOptie1Link = abstractPagina.getMenuOptie1Link();
+        this.menuOptie2Link = abstractPagina.getMenuOptie2Link();
+        this.menuOptie3Link = abstractPagina.getMenuOptie3Link();
+        this.menuOptie4Link = abstractPagina.getMenuOptie4Link();
 
-    public SchermHandler(AbstractPagina ap) {
-        this.titel = ap.getTitel();
-        this.subtitel = ap.getPaginaTitel();
-        this.menuOptie1 = ap.getMenuOptie1();
-        this.menuOptie2 = ap.getMenuOptie1();
-        this.menuOptie3 = ap.getMenuOptie1();
-        this.menuOptie4 = ap.getMenuOptie1();
-        this.menuOptie1Link = ap.getMenuOptie1Link();
+        log(abstractPagina);
 
-        log(ap);
         int gekozenPagina = ontvangGebruikersInput();
+        new SchermHandler(navigeerNaarVolgendePagina(gekozenPagina));
+    }
 
-        try {
-            switch (gekozenPagina) {
-                case 1:
-                    new SchermHandler(menuOptie1Link);
-                    break;
-                case 2:
-                    new SchermHandler(menuOptie2Link);
-                    break;
-                case 3:
-                    new SchermHandler(menuOptie3Link);
-                    break;
-                case 4:
-                    new SchermHandler(menuOptie4Link);
-                    break;
-                default:
-                    log("Ongeldige invoer!");
-                    new SchermHandler(ap);
-            }
-        } catch (InputMismatchException e){
-            log(e);
-            log("Ongeldige invoer!");
-            new SchermHandler(ap);
+    private AbstractPagina navigeerNaarVolgendePagina(int gekozenPagina) {
+        switch (gekozenPagina) {
+            case 1:
+                return menuOptie1Link;
+            case 2:
+                return menuOptie2Link;
+            case 3:
+                return menuOptie3Link;
+            case 4:
+                return menuOptie4Link;
+            default:
+                huidigePagina.setSysteemMelding("Ongeldige invoer!");
+                return huidigePagina;
         }
     }
 
     private int ontvangGebruikersInput() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            log(e);
+            huidigePagina.setSysteemMelding("Ongeldige invoer!");
+            new SchermHandler(huidigePagina);
+        }
+        return -1;
     }
 
     @Override

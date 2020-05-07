@@ -3,6 +3,7 @@ package frontend.pagina;
 public abstract class AbstractPagina {
     private final String titel = "MARKTPLAATS ONLINE";
     private String paginaTitel = "";
+    private String systeemMelding = ""; // TODO: systeemMeldingen in een andere kleur weergeven in de console.
     private String menuOptie1 = "";
     private String menuOptie2 = "";
     private String menuOptie3 = "";
@@ -15,21 +16,23 @@ public abstract class AbstractPagina {
 
     @Override
     public String toString() {
-        String hoofdTitel;
 
-        paginaTitel = paginaTitel.trim();
-        if (paginaTitel.isEmpty()) {
-            hoofdTitel = titel;
+        if (!systeemMelding.isEmpty()) {
+            return "\n\n" +
+                    titel + " - " + paginaTitel + "\n" +
+                    systeemMelding + "\n" +
+                    menuOptie1 + "\n" +
+                    menuOptie2 + "\n" +
+                    menuOptie3 + "\n" +
+                    menuOptie4 + "\n";
         } else {
-            hoofdTitel = titel + " - " + paginaTitel;
+            return "\n\n" +
+                    titel + " - " + paginaTitel + "\n" +
+                    menuOptie1 + "\n" +
+                    menuOptie2 + "\n" +
+                    menuOptie3 + "\n" +
+                    menuOptie4 + "\n";
         }
-
-        return "\n\n" +
-                hoofdTitel + "\n" +
-                menuOptie1 + "\n" +
-                menuOptie2 + "\n" +
-                menuOptie3 + "\n" +
-                menuOptie4 + "\n";
     }
 
     public String getTitel() {
@@ -42,6 +45,14 @@ public abstract class AbstractPagina {
 
     public void setPaginaTitel(String paginaTitel) {
         this.paginaTitel = paginaTitel.toLowerCase();
+    }
+
+    public String getSysteemMelding() {
+        return systeemMelding;
+    }
+
+    public void setSysteemMelding(String systeemMelding) {
+        this.systeemMelding = "MELDING: " + systeemMelding;
     }
 
     public String getMenuOptie1() {
@@ -65,7 +76,7 @@ public abstract class AbstractPagina {
     }
 
     public void setMenuOptie3(String menuOptie3) {
-        this.menuOptie3 = "[3] " +  menuOptie3;
+        this.menuOptie3 = "[3] " + menuOptie3;
     }
 
     public String getMenuOptie4() {

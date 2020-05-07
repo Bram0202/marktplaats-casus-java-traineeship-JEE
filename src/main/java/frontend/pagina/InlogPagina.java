@@ -1,12 +1,14 @@
 package frontend.pagina;
 
+import service.LoginService;
+
 public class InlogPagina extends AbstractPagina{
+
+    private LoginService loginService = new LoginService();
 
     public InlogPagina() {
         this.setPaginaTitel("inlogpagina");
-        this.setMenuOptie1("Inloggen");
-        this.setMenuOptie2("Inloggen");
-        this.setMenuOptie3("Inloggen");
+
     }
 
 }

@@ -1,11 +1,11 @@
-package frontend.console;
+package service;
 
 import org.slf4j.Logger;
 import java.util.Scanner;
 
 import static util.Util.logger;
 
-public class LoginHandler {
+public class LoginService {
     private final Logger log = logger(getClass());
     private final Scanner scanner = new Scanner(System.in);
 
