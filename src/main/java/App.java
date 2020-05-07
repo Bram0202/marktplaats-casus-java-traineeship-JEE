@@ -1,15 +1,15 @@
-import frontend.LoginPagina;
-import frontend.ProductPagina;
+import dao.GebruikerDao;
+import frontend.console.LoginHandler;
+import org.slf4j.Logger;
 
 import javax.persistence.EntityManager;
-import javax.swing.*;
-import java.awt.*;
 
+import static util.Util.logger;
 import static util.Util.mysql;
 
 public class App {
-    private final JFrame jFrame = new JFrame("Marktplaats Online");
-    private Container container;
+
+    private final Logger log = logger(getClass());
 
     public static void main(String[] args) {
         new App() {
@@ -17,34 +17,16 @@ public class App {
     }
 
     App() {
+        log("Starting Marktplaats Online");
+        LoginHandler loginHandler = new LoginHandler();
+        String emailadres = loginHandler.ontvangUserInputEmailadres();
+        String wachtwoord = loginHandler.ontvangUserInputWachtwoord();
+
         EntityManager em = mysql();
-        setupJFrame();
+        GebruikerDao gebruikerDao = new GebruikerDao(em);
+        gebruikerDao.login(emailadres, wachtwoord);
 
-        ProductPagina pp = new ProductPagina();
-        LoginPagina loginPagina = new LoginPagina();
-//        jFrame.setContentPane(lp.getjPanel_login());
-        container.add(loginPagina.getjPanel());
-        jFrame.setVisible(true);
-
-        while (!loginPagina.loginIsSucces()) {
-            if (loginPagina.loginIsSucces()) {
-//                pp.setJPanelToVisible();
-                //TODO: Waar blijft app hangen nu na inloggen
-                container.add(pp.getjPanel_producten());
-                container.add(pp.getjPanel_menu());
-                container.add(pp.getjPanel_main_producten());
-//            jFrame.setContentPane(pp.getjPanel_producten());
-                jFrame.setVisible(true);
-            }
-        }
     }
 
-    private void setupJFrame() {
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setSize(1200, 800);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setVisible(true);
-        container = jFrame.getContentPane();
-    }
-
+    private void log(Object o) { log.info(o + "");}
 }

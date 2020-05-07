@@ -28,3 +28,7 @@ hs_err_pid*
 *iml
 /src/main/java/playground
 **/target/
+
+*.settings
+*.classpath
+*.project
