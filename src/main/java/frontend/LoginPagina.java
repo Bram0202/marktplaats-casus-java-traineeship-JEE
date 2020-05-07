@@ -4,8 +4,6 @@ import dao.GebruikerDao;
 
 import javax.persistence.NoResultException;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static util.Util.mysql;
 
@@ -22,30 +20,26 @@ public class LoginPagina {
     private JLabel jLabel_wachtwoord;
     private JPasswordField jPasswordField;
     private JLabel jLabel_titel;
-
+    private boolean loginIsSucces = false;
     private final GebruikerDao gebruikerDao = new GebruikerDao(mysql());
 
     public LoginPagina() {
-        setup();
 
-        jButton_login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    gebruikerDao.login(jTextField_email.getText(), jPasswordField.getText()); // TODO: getText -> getPassword
-                } catch (NoResultException noResultException) {
-                    System.out.println(noResultException);
-                }
+        jButton_login.addActionListener(actionEvent -> {
+            try {
+                loginIsSucces = gebruikerDao.login(jTextField_email.getText(), jPasswordField.getText()); // TODO: getText -> getPassword
+                jPanel_login.setVisible(false);
+            } catch (NoResultException e) {
+                System.out.println(e);
             }
         });
     }
 
-    private void setup() {
-        JFrame jFrame = new JFrame("Marktplaats Online");
-        jFrame.setContentPane(jPanel_login);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setSize(1200, 800);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setVisible(true);
+    public JPanel getjPanel() {
+        return jPanel_login;
+    }
+
+    public boolean loginIsSucces() {
+        return loginIsSucces;
     }
 }
