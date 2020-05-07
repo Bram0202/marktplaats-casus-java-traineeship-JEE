@@ -118,4 +118,5 @@ public abstract class AbstractPagina {
     public void setMenuOptie4Link(AbstractPagina menuOptie4Link) {
         this.menuOptie4Link = menuOptie4Link;
     }
+    
 }

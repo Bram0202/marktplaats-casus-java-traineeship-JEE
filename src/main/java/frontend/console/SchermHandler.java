@@ -24,8 +24,7 @@ public class SchermHandler {
         this.menuOptie3Link = abstractPagina.getMenuOptie3Link();
         this.menuOptie4Link = abstractPagina.getMenuOptie4Link();
 
-        log(abstractPagina);
-
+        log(huidigePagina);
         int gekozenPagina = ontvangGebruikersInput();
         new SchermHandler(navigeerNaarVolgendePagina(gekozenPagina));
     }
@@ -56,16 +55,6 @@ public class SchermHandler {
             new SchermHandler(huidigePagina);
         }
         return -1;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
     }
 
     private void log(Object o) {

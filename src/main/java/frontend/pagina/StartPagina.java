@@ -8,6 +8,6 @@ public class StartPagina extends AbstractPagina {
         this.setMenuOptie2("Aanmelden");
         this.setMenuOptie3("Wachtwoord vergeten");
         this.setMenuOptie4("");
-        this.setMenuOptie1Link(new InlogPagina());
+        this.setMenuOptie1Link(new LoginPagina());
     }
 }
