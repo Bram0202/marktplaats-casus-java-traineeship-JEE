@@ -36,7 +36,6 @@ public class GebruikerDao {
             System.out.println("Welkom " + g.getNaam() + "!");
             return true;
         } else {
-            System.out.println("FAILED!");
             return false;
         }
     }

@@ -7,7 +7,7 @@ import static util.Util.logger;
 
 public class LoginHandler {
     private final Logger log = logger(getClass());
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public String ontvangUserInputEmailadres() {
         log("E-mailadres: ");
