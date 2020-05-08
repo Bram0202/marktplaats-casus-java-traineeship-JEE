@@ -6,8 +6,7 @@ import service.LoginService;
 public class LoginPagina extends AbstractPagina {
 
     public LoginPagina() {
-        this.setPaginaTitel("inlogpagina");
-
+        setPaginaTitel("inlogpagina");
     }
 
     @Override
@@ -24,7 +23,7 @@ public class LoginPagina extends AbstractPagina {
         } else {
             new SchermHandler(new LoginPagina());
         }
-
     }
+
 }
 
