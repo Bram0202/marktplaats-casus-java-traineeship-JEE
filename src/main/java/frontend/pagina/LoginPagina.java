@@ -10,11 +10,15 @@ public class LoginPagina extends AbstractPagina {
     }
 
     @Override
-    public void doDingen() {
+    public void paginaSpecifiekeEigenschappen() {
         LoginService loginService = new LoginService();
+
+        log("E-mailadres: ");
         String emailadres = loginService.vraagGebruikerOmEmailadres();
+        log("Wachtwoord: ");
         String wachtwoord = loginService.vraagGebruikerOmWachtwoord();
 
+        //TODO: SysteemMeldingen toevoegen.
         boolean loginGelukt = loginService.loginIsCorrect(emailadres, wachtwoord);
         if (loginGelukt) {
             new SchermHandler(new HoofdMenuPagina());

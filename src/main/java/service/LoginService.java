@@ -13,12 +13,10 @@ public class LoginService extends util.Logger {
     private final Scanner scanner = new Scanner(System.in);
 
     public String vraagGebruikerOmEmailadres() {
-        log("E-mailadres: ");
-        return scanner.nextLine();
+        return scanner.nextLine().toLowerCase().trim();
     }
 
     public String vraagGebruikerOmWachtwoord() {
-        log("Wachtwoord: ");
         return scanner.nextLine();
     }
 

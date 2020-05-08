@@ -12,6 +12,6 @@ public class StartPagina extends AbstractPagina {
     }
 
     @Override
-    public void doDingen() {}
+    public void paginaSpecifiekeEigenschappen() {}
 
 }

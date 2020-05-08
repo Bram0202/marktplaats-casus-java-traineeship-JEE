@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Properties>
-        <property name="logpattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</property>
+<!--        <property name="logpattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</property>-->
+        <property name="logpattern">%msg%n</property>
     </Properties>
 
     <Appenders>
@@ -24,7 +25,7 @@
 
     <Loggers>
         <Logger name="org.hibernate" level="WARN"/>
-        <Root level="DEBUG">
+        <Root level="INFO">
             <AppenderRef ref="console"/>
         </Root>
     </Loggers>

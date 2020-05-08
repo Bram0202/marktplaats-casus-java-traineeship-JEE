@@ -1,6 +1,8 @@
 package frontend.pagina;
 
-public abstract class AbstractPagina implements CustomActies {
+import util.Logger;
+
+public abstract class AbstractPagina extends Logger implements CustomActies  {
     private final String titel = "MARKTPLAATS ONLINE";
     private String paginaTitel = "";
     private String systeemMelding = ""; // TODO: systeemMeldingen in een andere kleur weergeven in de console.
