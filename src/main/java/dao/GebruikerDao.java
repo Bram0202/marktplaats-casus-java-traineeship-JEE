@@ -2,7 +2,7 @@ package dao;
 
 import domain.Gebruiker;
 
-import javax.persistence.EntityManager;
+import javax.persistence.*;
 
 public class GebruikerDao {
     private final EntityManager em;
@@ -19,12 +19,14 @@ public class GebruikerDao {
     }
 
     // READ (SELECT)
-    public Gebruiker select(int id) {
+    public Gebruiker find(int id) {
         return em.find(Gebruiker.class, id);
     }
 
     public Gebruiker select(String emailadres) {
-        return em.find(Gebruiker.class, emailadres);
+        TypedQuery<Gebruiker> query = em.createQuery("SELECT g FROM Gebruiker g WHERE g.emailadres = :emailadres", Gebruiker.class);
+        query.setParameter("emailadres", emailadres);
+        return query.getSingleResult();
     }
 
     // UPDATE

@@ -2,19 +2,17 @@ package domain;
 
 import service.SecurityService;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import static domain.Rol.GEBRUIKER;
+import static javax.persistence.EnumType.STRING;
 
 @Entity
 @Table(name = "gebruikers")
 public class Gebruiker extends AbstractEntity {
 
-    @Email @NotNull
+    @Email @NotNull @Column(unique = true)
     private String emailadres;
 
     private String naam;
@@ -22,8 +20,8 @@ public class Gebruiker extends AbstractEntity {
     @Size(min = 8) @NotNull
     private String wachtwoord = new SecurityService().wachtwoordGen();
 
-//    TODO: Enum is geen db type!
-//    private Enum rol = GEBRUIKER;
+    @Enumerated(value = STRING)
+    private Rol rol = GEBRUIKER;
 
     public Gebruiker() {}
 
@@ -38,5 +36,17 @@ public class Gebruiker extends AbstractEntity {
 
     public void setNaam(String naam) {
         this.naam = naam;
+    }
+
+    public String getEmailadres() {
+        return emailadres;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public String getWachtwoord() {
+        return wachtwoord;
     }
 }
