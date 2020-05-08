@@ -1,16 +1,15 @@
 package frontend.console;
 
 import frontend.pagina.AbstractPagina;
-import org.slf4j.Logger;
+import util.Logger;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static util.Util.logger;
 
-public class SchermHandler {
+public class SchermHandler extends Logger {
 
-    private final Logger log = logger(getClass());
     private final AbstractPagina menuOptie1Link;
     private final AbstractPagina menuOptie2Link;
     private final AbstractPagina menuOptie3Link;
@@ -25,11 +24,14 @@ public class SchermHandler {
         this.menuOptie4Link = abstractPagina.getMenuOptie4Link();
 
         log(huidigePagina);
+
+        abstractPagina.doDingen();
+
         int gekozenPagina = ontvangGebruikersInput();
         new SchermHandler(navigeerNaarVolgendePagina(gekozenPagina));
     }
 
-    private AbstractPagina navigeerNaarVolgendePagina(int gekozenPagina) {
+    public AbstractPagina navigeerNaarVolgendePagina(int gekozenPagina) {
         switch (gekozenPagina) {
             case 1:
                 return menuOptie1Link;
@@ -57,7 +59,4 @@ public class SchermHandler {
         return -1;
     }
 
-    private void log(Object o) {
-        log.info(o + "");
-    }
 }

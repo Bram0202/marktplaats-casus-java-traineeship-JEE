@@ -12,8 +12,8 @@ import java.util.Scanner;
 import static util.Util.logger;
 import static util.Util.mysql;
 
-public class LoginService {
-    private final Logger log = logger(getClass());
+public class LoginService extends util.Logger {
+//    private final Logger log = logger(getClass());
     private final Scanner scanner = new Scanner(System.in);
 
     public String vraagGebruikerOmEmailadres() {
@@ -21,7 +21,7 @@ public class LoginService {
         return scanner.nextLine();
     }
 
-    public String ontvangUserInputWachtwoord() {
+    public String vraagGebruikerOmWachtwoord() {
         log("Wachtwoord: ");
         return scanner.nextLine();
     }
@@ -32,7 +32,7 @@ public class LoginService {
         LoginService loginService = new LoginService();
 
         String emailadres = loginService.vraagGebruikerOmEmailadres();
-        String wachtwoord = loginService.ontvangUserInputWachtwoord();
+        String wachtwoord = loginService.vraagGebruikerOmWachtwoord();
 
         try {
             return gebruikerDao.login(emailadres, wachtwoord);
@@ -60,8 +60,21 @@ public class LoginService {
         }
     }
 
-    private void log(Object o) {
-        log.info(o + "");
+    public boolean login(String emailadres, String wachtwoord) throws NoResultException {
+        GebruikerDao gDao = new GebruikerDao(mysql());
+        Gebruiker g = gDao.select(emailadres);
+
+        if (g != null && emailadres.equals(g.getEmailadres()) && wachtwoord.equals(g.getWachtwoord())) {
+            System.out.println("Welkom " + g.getNaam() + "!");
+            log("Succes!");
+            return true;
+        } else {
+            return false;
+        }
     }
+
+//    private void log(Object o) {
+//        log.info(o + "");
+//    }
 
 }
