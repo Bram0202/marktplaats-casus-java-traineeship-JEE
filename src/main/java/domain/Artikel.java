@@ -8,8 +8,8 @@ import static javax.persistence.CascadeType.*;
 import static javax.persistence.EnumType.STRING;
 
 @Entity
-@Table(name = "producten")
-public class Product extends AbstractEntity{
+@Table(name = "artikelen")
+public class Artikel extends AbstractEntity {
 
     @NotNull
     private String naam;
@@ -27,13 +27,13 @@ public class Product extends AbstractEntity{
     @ManyToOne(cascade = MERGE)
     private Categorie categorie;
 
-    public Product(){}
+    public Artikel(){}
 
-    public Product(String naam, BigDecimal prijs, Soort soort, Categorie categorie) {
+    public Artikel(String naam, BigDecimal prijs, Soort soort, Categorie categorie) {
         this(naam, prijs, soort, categorie, null);
     }
 
-    public Product(String naam, BigDecimal prijs, Soort soort, Categorie categorie, String omschrijving) {
+    public Artikel(String naam, BigDecimal prijs, Soort soort, Categorie categorie, String omschrijving) {
         this.naam = naam;
         this.prijs = prijs;
         this.soort = soort;
@@ -44,6 +44,6 @@ public class Product extends AbstractEntity{
 
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
-        categorie.addProduct(this);
+        categorie.addArtikel(this);
     }
 }

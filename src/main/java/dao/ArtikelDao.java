@@ -1,47 +1,47 @@
 package dao;
 
-import domain.Product;
+import domain.Artikel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 //TODO: lijst met producten tonen aan gebruiker.
-public class ProductDao {
+public class ArtikelDao {
     private final EntityManager em;
 
-    public ProductDao(EntityManager em) {
+    public ArtikelDao(EntityManager em) {
         this.em = em;
     }
 
     // CREATE (INSERT)
-    public void insert(Product p) {
+    public void insert(Artikel a) {
         em.getTransaction().begin();
-        em.persist(p);
+        em.persist(a);
         em.getTransaction().commit();
     }
 
     // READ (SELECT)
-    public Product find(int id) {
-        return em.find(Product.class, id);
+    public Artikel find(int id) {
+        return em.find(Artikel.class, id);
     }
 
-    public Product select(String naam) {
-        TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p WHERE p.naam = :naam", Product.class);
+    public Artikel select(String naam) {
+        TypedQuery<Artikel> query = em.createQuery("SELECT a FROM Artikel a WHERE a.naam = :naam", Artikel.class);
         query.setParameter("naam", naam);
         return query.getSingleResult();
     }
 
     // UPDATE
-    public Product update(Product p) {
+    public Artikel update(Artikel a) {
         em.getTransaction().begin();
-        Product merged = em.merge(p);
+        Artikel merged = em.merge(a);
         em.getTransaction().commit();
         return merged;
     }
 
     // DELETE
     public void delete(String naam) {
-        Product select = select(naam);
+        Artikel select = select(naam);
         if (select != null) {
             em.getTransaction().begin();
             em.remove(select);

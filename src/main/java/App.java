@@ -9,7 +9,7 @@ public class App {
     }
 
     App() {
-        new SchermHandler(new StartPagina());
+      new SchermHandler(new StartPagina());
     }
 
 }
