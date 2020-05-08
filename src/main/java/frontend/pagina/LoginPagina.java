@@ -16,8 +16,6 @@ public class LoginPagina extends AbstractPagina {
         String wachtwoord = loginService.vraagGebruikerOmWachtwoord();
 
         boolean loginGelukt = loginService.loginIsCorrect(emailadres, wachtwoord);
-        System.out.println(loginGelukt);
-
         if (loginGelukt) {
             new SchermHandler(new HoofdMenuPagina());
         } else {

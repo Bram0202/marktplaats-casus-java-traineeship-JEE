@@ -31,14 +31,11 @@ public class LoginService extends util.Logger {
                     "SELECT g FROM Gebruiker g " +
                             "WHERE g.emailadres = :emailadres AND g.wachtwoord = :wachtwoord"
                     , Gebruiker.class);
-
             query.setParameter("emailadres", emailadres);
             query.setParameter("wachtwoord", wachtwoord);
-
             query.getSingleResult();
-            log("GELUKT");
-            return true;
 
+            return true;
         } catch (NoResultException e) {
             log(e);
             return false;
