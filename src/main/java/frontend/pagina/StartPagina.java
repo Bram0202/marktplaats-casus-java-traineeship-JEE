@@ -1,6 +1,5 @@
 package frontend.pagina;
 
-
 public class StartPagina extends AbstractPagina {
 
     public StartPagina() {
@@ -12,6 +11,7 @@ public class StartPagina extends AbstractPagina {
         this.setMenuOptie1Link(new LoginPagina());
     }
 
-    public void doDingen() { }
+    @Override
+    public void doDingen() {}
 
 }

@@ -6,8 +6,6 @@ import util.Logger;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static util.Util.logger;
-
 public class SchermHandler extends Logger {
 
     private final AbstractPagina menuOptie1Link;

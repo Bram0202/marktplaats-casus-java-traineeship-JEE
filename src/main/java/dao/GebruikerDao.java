@@ -29,17 +29,6 @@ public class GebruikerDao {
         return query.getSingleResult();
     }
 
-    public boolean login(String emailadres, String wachtwoord) throws NoResultException {
-        Gebruiker g = select(emailadres);
-
-        if (g != null && emailadres.equals(g.getEmailadres()) && wachtwoord.equals(g.getWachtwoord())) {
-            System.out.println("Welkom " + g.getNaam() + "!");
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     // UPDATE
     public Gebruiker update(Gebruiker g) {
         em.getTransaction().begin();

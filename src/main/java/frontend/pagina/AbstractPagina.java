@@ -8,10 +8,10 @@ public abstract class AbstractPagina implements CustomActies {
     private String menuOptie2 = "";
     private String menuOptie3 = "";
     private String menuOptie4 = "";
-    private AbstractPagina menuOptie1Link = this;
-    private AbstractPagina menuOptie2Link = this;
-    private AbstractPagina menuOptie3Link = this;
-    private AbstractPagina menuOptie4Link = this;
+    private AbstractPagina menuOptie1Link;
+    private AbstractPagina menuOptie2Link;
+    private AbstractPagina menuOptie3Link;
+    private AbstractPagina menuOptie4Link;
     //TODO: Een parent/ga terug naar vorige pagina optie toevoegen.
 
     @Override
@@ -34,7 +34,6 @@ public abstract class AbstractPagina implements CustomActies {
                     menuOptie4 + "\n";
         }
     }
-
 
     public String getTitel() {
         return titel;
@@ -89,7 +88,11 @@ public abstract class AbstractPagina implements CustomActies {
     }
 
     public AbstractPagina getMenuOptie1Link() {
-        return menuOptie1Link;
+        if (menuOptie1Link != null) {
+            return menuOptie1Link;
+        } else {
+            return this;
+        }
     }
 
     public void setMenuOptie1Link(AbstractPagina menuOptie1Link) {
@@ -97,7 +100,11 @@ public abstract class AbstractPagina implements CustomActies {
     }
 
     public AbstractPagina getMenuOptie2Link() {
-        return menuOptie2Link;
+        if (menuOptie2Link != null) {
+            return menuOptie2Link;
+        } else {
+            return this;
+        }
     }
 
     public void setMenuOptie2Link(AbstractPagina menuOptie2Link) {
@@ -105,7 +112,11 @@ public abstract class AbstractPagina implements CustomActies {
     }
 
     public AbstractPagina getMenuOptie3Link() {
-        return menuOptie3Link;
+        if (menuOptie3Link != null) {
+            return menuOptie3Link;
+        } else {
+            return this;
+        }
     }
 
     public void setMenuOptie3Link(AbstractPagina menuOptie3Link) {
@@ -113,11 +124,15 @@ public abstract class AbstractPagina implements CustomActies {
     }
 
     public AbstractPagina getMenuOptie4Link() {
-        return menuOptie4Link;
+        if (menuOptie4Link != null) {
+            return menuOptie4Link;
+        } else {
+            return this;
+        }
     }
 
     public void setMenuOptie4Link(AbstractPagina menuOptie4Link) {
         this.menuOptie4Link = menuOptie4Link;
     }
-    
+
 }
