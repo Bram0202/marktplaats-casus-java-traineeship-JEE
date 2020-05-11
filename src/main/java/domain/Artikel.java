@@ -29,6 +29,10 @@ public class Artikel extends AbstractEntity {
 
     public Artikel(){}
 
+    public Artikel(String naam, BigDecimal prijs, Soort soort, Categorie categorie) {
+        this(naam, prijs, soort, categorie, null);
+    }
+
     public Artikel(String naam, BigDecimal prijs, Soort soort, Categorie categorie, String omschrijving) {
         this.naam = naam;
         this.prijs = prijs;

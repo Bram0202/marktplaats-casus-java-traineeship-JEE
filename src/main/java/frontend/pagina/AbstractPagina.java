@@ -14,7 +14,7 @@ public abstract class AbstractPagina extends Logger implements CustomActies  {
     private AbstractPagina menuOptie2Link;
     private AbstractPagina menuOptie3Link;
     private AbstractPagina menuOptie4Link;
-    //TODO: Een parent/ga terug naar vorige pagina optie toevoegen.
+    // TODO: Een parent/ga terug naar vorige pagina optie toevoegen.
 
     @Override
     public String toString() {

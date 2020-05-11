@@ -21,7 +21,8 @@ public class ArtikelService {
     }
 
     public String ontvangGebruikersInvoer_omschrijving() {
-        return scanner.nextLine();
+        Scanner s = new Scanner(System.in);
+        return s.nextLine();
     }
 
     public int ontvangGebruikersInvoer_int() throws InputMismatchException {
@@ -52,11 +53,7 @@ public class ArtikelService {
         }
     }
 
-//    public Categorie ontvangGebruikersInvoer_Categorie() {
-//        String input = scanner.nextLine().toLowerCase().trim();
-//
-//        if (input)
-//    }
+//git
 
     public List<Categorie> toonAlleCategorien() {
         CategorieDao categorieDao = new CategorieDao(mysql());
