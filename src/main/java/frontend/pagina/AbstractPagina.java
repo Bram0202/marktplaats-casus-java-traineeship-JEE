@@ -27,6 +27,9 @@ public abstract class AbstractPagina extends Logger implements CustomActies  {
                     menuOptie2 + "\n" +
                     menuOptie3 + "\n" +
                     menuOptie4 + "\n";
+        } else if(menuOptie1.isEmpty() && menuOptie2.isEmpty() && menuOptie3.isEmpty() && menuOptie4.isEmpty()) {
+            return "\n\n" +
+                    titel + " - " + paginaTitel;
         } else {
             return "\n\n" +
                     titel + " - " + paginaTitel + "\n" +
