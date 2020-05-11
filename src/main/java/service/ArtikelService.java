@@ -7,7 +7,6 @@ import domain.Categorie;
 import domain.Soort;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;

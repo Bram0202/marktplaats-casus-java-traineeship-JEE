@@ -24,6 +24,7 @@ public class ArtikelAanbiedenPagina extends AbstractPagina {
         log("Voor welke prijs wilt u dit artikel aanbieden?");
         BigDecimal prijs = artikelService.ontvangGebruikersInvoer_prijs(); //TODO: Catch InputMisMatchException!
 
+        //TODO: Gebruiker een 'soort' laten kiezen.
 //       log("Is dit artikel een 'dienst' of 'product'?");
 //       Soort soort = vraagGebruikerOmSoort();
 

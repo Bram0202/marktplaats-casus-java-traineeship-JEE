@@ -40,8 +40,7 @@ public class CategorieDao {
 
     public List<Categorie> selectAlleCategorieen() {
         TypedQuery<Categorie> query = em.createQuery("select c from Categorie c", Categorie.class);
-//        TypedQuery<Integer> query2 = em.createQuery("", Integer.class);
-        return query.getResultList(); // 2
+        return query.getResultList();
     }
 
     // UPDATE

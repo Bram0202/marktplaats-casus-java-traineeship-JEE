@@ -17,7 +17,6 @@ public class HoofdMenuPagina extends AbstractPagina {
         setSysteemMelding(systeemMelding);
     }
 
-
     @Override
     public void paginaSpecifiekeEigenschappen() {}
 }

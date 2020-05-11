@@ -37,52 +37,24 @@ public abstract class AbstractPagina extends Logger implements CustomActies  {
         }
     }
 
-    public String getTitel() {
-        return titel;
-    }
-
-    public String getPaginaTitel() {
-        return paginaTitel;
-    }
-
     public void setPaginaTitel(String paginaTitel) {
         this.paginaTitel = paginaTitel.toLowerCase();
-    }
-
-    public String getSysteemMelding() {
-        return systeemMelding;
     }
 
     public void setSysteemMelding(String systeemMelding) {
         this.systeemMelding = "MELDING: " + systeemMelding;
     }
 
-    public String getMenuOptie1() {
-        return menuOptie1;
-    }
-
     public void setMenuOptie1(String menuOptie1) {
         this.menuOptie1 = "[1] " + menuOptie1;
-    }
-
-    public String getMenuOptie2() {
-        return menuOptie2;
     }
 
     public void setMenuOptie2(String menuOptie2) {
         this.menuOptie2 = "[2] " + menuOptie2;
     }
 
-    public String getMenuOptie3() {
-        return menuOptie3;
-    }
-
     public void setMenuOptie3(String menuOptie3) {
         this.menuOptie3 = "[3] " + menuOptie3;
-    }
-
-    public String getMenuOptie4() {
-        return menuOptie4;
     }
 
     public void setMenuOptie4(String menuOptie4) {
