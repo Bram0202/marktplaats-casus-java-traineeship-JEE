@@ -4,12 +4,9 @@ import frontend.pagina.StartPagina;
 public class App {
 
     public static void main(String[] args) {
-        new App() {
-        };
+        new App() {};
     }
 
-    App() {
-        new SchermHandler(new StartPagina());
-    }
+    App() { new SchermHandler(new StartPagina()); }
 
 }

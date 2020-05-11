@@ -13,12 +13,10 @@ public class LoginService extends util.Logger {
     private final Scanner scanner = new Scanner(System.in);
 
     public String vraagGebruikerOmEmailadres() {
-        log("E-mailadres: ");
-        return scanner.nextLine();
+        return scanner.nextLine().toLowerCase().trim();
     }
 
     public String vraagGebruikerOmWachtwoord() {
-        log("Wachtwoord: ");
         return scanner.nextLine();
     }
 
@@ -31,14 +29,11 @@ public class LoginService extends util.Logger {
                     "SELECT g FROM Gebruiker g " +
                             "WHERE g.emailadres = :emailadres AND g.wachtwoord = :wachtwoord"
                     , Gebruiker.class);
-
             query.setParameter("emailadres", emailadres);
             query.setParameter("wachtwoord", wachtwoord);
-
             query.getSingleResult();
-            log("GELUKT");
-            return true;
 
+            return true;
         } catch (NoResultException e) {
             log(e);
             return false;

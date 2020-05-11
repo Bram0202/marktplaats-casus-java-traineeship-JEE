@@ -3,15 +3,15 @@ package frontend.pagina;
 public class StartPagina extends AbstractPagina {
 
     public StartPagina() {
-        this.setPaginaTitel("startpagina");
-        this.setMenuOptie1("Inloggen");
-        this.setMenuOptie2("Aanmelden");
-        this.setMenuOptie3("Wachtwoord vergeten");
-        this.setMenuOptie4("");
-        this.setMenuOptie1Link(new LoginPagina());
+        setPaginaTitel("startpagina");
+        setMenuOptie1("Inloggen");
+        setMenuOptie2("Registreren");
+        setMenuOptie3("Wachtwoord vergeten");
+        setMenuOptie4("");
+        setMenuOptie1Link(new LoginPagina());
     }
 
     @Override
-    public void doDingen() {}
+    public void paginaSpecifiekeEigenschappen() {}
 
 }

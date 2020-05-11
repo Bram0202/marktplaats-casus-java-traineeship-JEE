@@ -13,7 +13,7 @@ public class Categorie extends AbstractEntity {
     private String naam;
 
     @OneToMany(mappedBy = "categorie")
-    private List<Product> producten = new ArrayList<>();
+    private List<Artikel> artikelen = new ArrayList<>();
 
     public Categorie(){}
 
@@ -21,8 +21,8 @@ public class Categorie extends AbstractEntity {
         this.naam = naam;
     }
 
-    public void addProduct(Product product) {
-        this.producten.add(product);
+    public void addArtikel(Artikel artikel) {
+        this.artikelen.add(artikel);
     }
 
     @Override

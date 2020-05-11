@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class CategorieDao {
     private final EntityManager em;
@@ -35,6 +36,11 @@ public class CategorieDao {
         TypedQuery<Categorie> query = em.createQuery("SELECT c FROM Categorie c WHERE c.naam = :naam", Categorie.class);
         query.setParameter("naam", naam);
         return query.getSingleResult();
+    }
+
+    public List<Categorie> selectAlleCategorieen() {
+        TypedQuery<Categorie> query = em.createQuery("select c from Categorie c", Categorie.class);
+        return query.getResultList();
     }
 
     // UPDATE

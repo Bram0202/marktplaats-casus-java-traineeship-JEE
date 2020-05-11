@@ -23,7 +23,7 @@ public class SchermHandler extends Logger {
 
         log(huidigePagina);
 
-        abstractPagina.doDingen();
+        abstractPagina.paginaSpecifiekeEigenschappen();
 
         int gekozenPagina = ontvangGebruikersInput();
         new SchermHandler(navigeerNaarVolgendePagina(gekozenPagina));
