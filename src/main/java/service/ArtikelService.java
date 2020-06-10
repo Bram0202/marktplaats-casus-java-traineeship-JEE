@@ -52,9 +52,7 @@ public class ArtikelService {
             return Soort.ONBEKEND;
         }
     }
-
-//git
-
+    
     public List<Categorie> toonAlleCategorien() {
         CategorieDao categorieDao = new CategorieDao(mysql());
 
