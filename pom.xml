@@ -22,7 +22,15 @@
     </properties>
 
     <dependencies>
-        <!-- JPA -->
+        <!-- Java EE -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Hibernate/JPA -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -62,6 +70,92 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.13.1</version>
         </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Download WebSphere Liberty to target directory and start it -->
+            <!-- See test/resources/arquillian.xml and server.xml for configuration -->
+            <plugin>
+                <groupId>net.wasdev.wlp.maven.plugins</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+                <version>3.0.M1</version>
+                <configuration>
+                    <!-- Liberty server to run test against -->
+                    <assemblyArtifact>
+                        <groupId>io.openliberty</groupId>
+                        <artifactId>openliberty-runtime</artifactId>
+                        <version>19.0.0.10</version>
+                        <type>zip</type>
+                    </assemblyArtifact>
+                    <configFile>src/test/resources/server.xml</configFile> <!-- Used to run Arquillian-->
+                </configuration>
+                <executions>
+                    <!-- Create server during package phase for running the application AND Arquillian -->
+                    <execution>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>create-server</goal>
+                        </goals>
+                    </execution>
+                    <!-- Used for running the application, not for Arquillian-->
+                    <execution>
+                        <id>deploy-app</id>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <configuration>
+                            <appArchive>${project.basedir}\target\${project.build.finalName}.war</appArchive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Copy libraries to WebSphere Liberty -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <!-- Copy database connectors during package phase for running the application AND Arquillian. -->
+                    <!-- Bit overkill as they aren't used in all projects, but it keeps the configuration simpler. -->
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>copy-arquillian</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <type>jar</type>
+                            <overWrite>false</overWrite>
+                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources
+                            </outputDirectory>
+                            <destFileName>mysql.jar</destFileName>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
