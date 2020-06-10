@@ -1,11 +1,12 @@
-package domain;
+package domain.gebruiker;
 
+import domain.AbstractEntity;
 import service.SecurityService;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import static domain.Rol.GEBRUIKER;
+import static domain.gebruiker.Rol.GEBRUIKER;
 import static javax.persistence.EnumType.STRING;
 
 @Entity

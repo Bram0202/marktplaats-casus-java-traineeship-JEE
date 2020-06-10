@@ -1,4 +1,7 @@
-package domain;
+package domain.categorie;
+
+import domain.artikel.Artikel;
+import domain.AbstractEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

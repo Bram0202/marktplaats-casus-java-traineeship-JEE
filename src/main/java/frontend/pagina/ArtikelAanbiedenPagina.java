@@ -1,9 +1,9 @@
 package frontend.pagina;
 
-import domain.Categorie;
-import domain.Soort;
+import domain.categorie.Categorie;
+import domain.artikel.Soort;
 import frontend.console.SchermHandler;
-import service.ArtikelService;
+import domain.artikel.ArtikelService;
 
 import java.math.BigDecimal;
 import java.util.List;

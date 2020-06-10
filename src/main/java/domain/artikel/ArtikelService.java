@@ -1,10 +1,7 @@
-package service;
+package domain.artikel;
 
-import dao.ArtikelDao;
-import dao.CategorieDao;
-import domain.Artikel;
-import domain.Categorie;
-import domain.Soort;
+import domain.categorie.CategorieDao;
+import domain.categorie.Categorie;
 
 import java.math.BigDecimal;
 import java.util.InputMismatchException;
@@ -52,7 +49,7 @@ public class ArtikelService {
             return Soort.ONBEKEND;
         }
     }
-    
+
     public List<Categorie> toonAlleCategorien() {
         CategorieDao categorieDao = new CategorieDao(mysql());
 
