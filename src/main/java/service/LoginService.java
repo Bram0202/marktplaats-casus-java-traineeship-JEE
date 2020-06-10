@@ -1,6 +1,6 @@
 package service;
 
-import domain.Gebruiker;
+import domain.gebruiker.Gebruiker;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

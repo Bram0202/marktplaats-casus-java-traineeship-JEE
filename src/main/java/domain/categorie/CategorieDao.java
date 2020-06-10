@@ -1,6 +1,4 @@
-package dao;
-
-import domain.Categorie;
+package domain.categorie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NonUniqueResultException;
@@ -23,7 +21,7 @@ public class CategorieDao {
             em.persist(c);
             em.getTransaction().commit();
         } catch (RollbackException | NonUniqueResultException e) {
-            System.out.println(e); //TODO: De al bestaande categorie teruggeven aan de gebruiker.
+            System.out.println(e); //TODO: De al bestaande domain.categorie teruggeven aan de domain.gebruiker.
         }
     }
 

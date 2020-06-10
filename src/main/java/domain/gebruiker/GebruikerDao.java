@@ -1,6 +1,4 @@
-package dao;
-
-import domain.Gebruiker;
+package domain.gebruiker;
 
 import javax.persistence.*;
 
