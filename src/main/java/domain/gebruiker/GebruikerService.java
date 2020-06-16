@@ -1,7 +1,5 @@
 package domain.gebruiker;
 
-import util.Session;
-
 import javax.inject.Inject;
 
 public class GebruikerService {
@@ -10,9 +8,10 @@ public class GebruikerService {
     private GebruikerDao gebruikerDao;
 
     public Gebruiker controleerEmailadres(String emailadres) {
-        if (gebruikerDao.select(emailadres) != null) {
-            return gebruikerDao.select(emailadres);
+        if (gebruikerDao.find(emailadres) != null) {
+            return gebruikerDao.find(emailadres);
         } else {
+            // TODO: return iets anders dan null.
             return null;
         }
     }

@@ -18,8 +18,8 @@ public class GebruikerDao {
     }
 
     // READ (SELECT)
-    public Gebruiker find(int id) {
-        return em.find(Gebruiker.class, id);
+    public Gebruiker find(String emailadres) {
+        return em.find(Gebruiker.class, emailadres);
     }
 
     public Gebruiker select(String emailadres) {

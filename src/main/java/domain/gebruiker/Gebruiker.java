@@ -13,7 +13,7 @@ import static javax.persistence.EnumType.STRING;
 @Table(name = "gebruikers")
 public class Gebruiker extends AbstractEntity {
 
-    // @Email @NotNull @Column(unique = true)
+    @Id @Email @NotNull @Column(unique = true)
     private String emailadres;
 
     private String naam;
