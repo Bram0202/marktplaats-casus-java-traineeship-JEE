@@ -1,25 +1,22 @@
 package domain.categorie;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.RollbackException;
-import javax.persistence.TypedQuery;
+import lombok.NoArgsConstructor;
+
+import javax.ejb.Stateless;
+import javax.persistence.*;
 import java.util.List;
 
+@NoArgsConstructor
+@Stateless
 public class CategorieDao {
-    private final EntityManager em;
 
-    public CategorieDao(EntityManager em) {
-        this.em = em;
-    }
-
+    @PersistenceContext
+    private EntityManager em;
 
     // CREATE (INSERT)
     public void insert(Categorie c) {
         try {
-            em.getTransaction().begin();
             em.persist(c);
-            em.getTransaction().commit();
         } catch (RollbackException | NonUniqueResultException e) {
             System.out.println(e); //TODO: De al bestaande domain.categorie teruggeven aan de domain.gebruiker.
         }
@@ -43,9 +40,7 @@ public class CategorieDao {
 
     // UPDATE
     public Categorie update(Categorie c) {
-        em.getTransaction().begin();
         Categorie merged = em.merge(c);
-        em.getTransaction().commit();
         return merged;
     }
 
@@ -53,9 +48,7 @@ public class CategorieDao {
     public void delete(String naam) {
         Categorie select = select(naam);
         if (select != null) {
-            em.getTransaction().begin();
             em.remove(select);
-            em.getTransaction().commit();
         }
     }
 }

@@ -1,19 +1,20 @@
 package domain.gebruiker;
 
+import lombok.NoArgsConstructor;
+
+import javax.ejb.Stateless;
 import javax.persistence.*;
 
+@NoArgsConstructor
+@Stateless
 public class GebruikerDao {
-    private final EntityManager em;
 
-    public GebruikerDao(EntityManager em) {
-        this.em = em;
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     // CREATE (INSERT)
     public void insert(Gebruiker g) {
-        em.getTransaction().begin();
         em.persist(g);
-        em.getTransaction().commit();
     }
 
     // READ (SELECT)
@@ -29,9 +30,7 @@ public class GebruikerDao {
 
     // UPDATE
     public Gebruiker update(Gebruiker g) {
-        em.getTransaction().begin();
         Gebruiker merged = em.merge(g);
-        em.getTransaction().commit();
         return merged;
     }
 
@@ -39,9 +38,7 @@ public class GebruikerDao {
     public void delete(String emailadres) {
         Gebruiker select = select(emailadres);
         if (select != null) {
-            em.getTransaction().begin();
             em.remove(select);
-            em.getTransaction().commit();
         }
     }
 

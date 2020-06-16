@@ -1,7 +1,10 @@
 package service;
 
 import domain.gebruiker.Gebruiker;
+import domain.gebruiker.GebruikerDao;
+import util.Session;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -12,6 +15,9 @@ import static util.Util.mysql;
 public class LoginService extends util.Logger {
     private final Scanner scanner = new Scanner(System.in);
 
+    @Inject
+    private GebruikerDao gebruikerDao;
+
     public String vraagGebruikerOmEmailadres() {
         return scanner.nextLine().toLowerCase().trim();
     }
@@ -19,6 +25,7 @@ public class LoginService extends util.Logger {
     public String vraagGebruikerOmWachtwoord() {
         return scanner.nextLine();
     }
+
 
     //TODO: Dit is niet hoofdlettergevoelig!
     public boolean loginIsCorrect(String emailadres, String wachtwoord) {

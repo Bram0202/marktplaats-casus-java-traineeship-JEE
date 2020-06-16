@@ -43,6 +43,12 @@
             <version>8.0.19</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.4.17.Final</version>
+        </dependency>
+
         <!-- Validation -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -76,6 +82,7 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -94,7 +101,7 @@
                         <version>19.0.0.10</version>
                         <type>zip</type>
                     </assemblyArtifact>
-                    <configFile>src/test/resources/server.xml</configFile> <!-- Used to run Arquillian-->
+                    <configFile>src/test/resources/test-server.xml</configFile> <!-- Used to run Arquillian-->
                 </configuration>
                 <executions>
                     <!-- Create server during package phase for running the application AND Arquillian -->
@@ -126,14 +133,6 @@
                     <!-- Copy database connectors during package phase for running the application AND Arquillian. -->
                     <!-- Bit overkill as they aren't used in all projects, but it keeps the configuration simpler. -->
                     <execution>
-                        <id>copy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>copy-arquillian</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>copy</goal>
