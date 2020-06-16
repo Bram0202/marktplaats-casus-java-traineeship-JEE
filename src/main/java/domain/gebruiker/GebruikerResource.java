@@ -16,15 +16,12 @@ public class GebruikerResource implements Serializable {
     @GET @Path("/login")
     public Gebruiker login(@QueryParam("emailadres") String emailadres,
                            @QueryParam("wachtwoord") String wachtwoord) {
-        System.out.println(emailadres + wachtwoord);
 
         Gebruiker gebruiker = gebruikerService.controleerEmailadres(emailadres);
 
         if(gebruiker.getWachtwoord().equals(wachtwoord)) {
-            System.out.println("Wachtwoord correct");
             return gebruiker;
         } else {
-            System.out.println("Wachtwoord onjuist");
             Response.ok().entity("<hello>ok</hello>").build();
             Response.serverError().build();
             return null;
