@@ -8,8 +8,8 @@ public class GebruikerService {
     private GebruikerDao gebruikerDao;
 
     public Gebruiker controleerEmailadres(String emailadres) {
-        if (gebruikerDao.find(emailadres) != null) {
-            return gebruikerDao.find(emailadres);
+        if (gebruikerDao.select(emailadres) != null) {
+            return gebruikerDao.select(emailadres);
         } else {
             // TODO: return iets anders dan null.
             return null;
