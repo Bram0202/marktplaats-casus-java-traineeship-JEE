@@ -3,7 +3,9 @@ package domain.gebruiker;
 import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 @NoArgsConstructor
 @Stateless

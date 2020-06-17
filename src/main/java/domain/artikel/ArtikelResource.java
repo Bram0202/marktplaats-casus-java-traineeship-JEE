@@ -1,8 +1,6 @@
 package domain.artikel;
 
-import domain.categorie.Categorie;
 import domain.categorie.CategorieService;
-import domain.gebruiker.Gebruiker;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -33,7 +31,7 @@ public class ArtikelResource implements Serializable {
             @QueryParam("prijs") BigDecimal prijs,
             @QueryParam("soort") String soortInput,
             @QueryParam("omschrijving") String omschrijving,
-            @QueryParam("categorie") String categorieInput){
+            @QueryParam("categorie") String categorieInput) {
 
         Soort soort = artikelService.stringToSoort(soortInput);
         Artikel artikel = artikelService.nieuwArtikel(naam, prijs, soort, omschrijving, categorieInput);
