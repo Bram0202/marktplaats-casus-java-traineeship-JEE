@@ -23,7 +23,7 @@ public class CategorieDao {
     }
 
     // READ (SELECT)
-    public Categorie find(int id) {
+    public Categorie find(Long id) {
         return em.find(Categorie.class, id);
     }
 

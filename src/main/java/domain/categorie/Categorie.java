@@ -2,6 +2,7 @@ package domain.categorie;
 
 import domain.artikel.Artikel;
 import domain.AbstractEntity;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,15 +11,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "categorieen", uniqueConstraints={@UniqueConstraint(columnNames={"naam"})})
+@NoArgsConstructor
 public class Categorie extends AbstractEntity {
 
-    @NotNull
+//    @NotNull
     private String naam;
 
     @OneToMany(mappedBy = "categorie")
     private List<Artikel> artikelen = new ArrayList<>();
-
-    public Categorie(){}
 
     public Categorie(String naam) {
         this.naam = naam;

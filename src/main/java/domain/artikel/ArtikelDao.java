@@ -24,7 +24,7 @@ public class ArtikelDao {
     }
 
     // READ (SELECT)
-    public Artikel find(int id) {
+    public Artikel find(Long id) {
         return em.find(Artikel.class, id);
     }
 

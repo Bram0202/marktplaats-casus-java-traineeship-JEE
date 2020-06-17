@@ -2,6 +2,7 @@ package domain.artikel;
 
 import domain.AbstractEntity;
 import domain.categorie.Categorie;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import static javax.persistence.EnumType.STRING;
 
 @Entity
 @Table(name = "artikelen")
+@NoArgsConstructor
 public class Artikel extends AbstractEntity {
 
     @NotNull
@@ -26,27 +28,18 @@ public class Artikel extends AbstractEntity {
 
     private String omschrijving;
 
-    @NotNull
-    @ManyToOne(cascade = MERGE)
-    private Categorie categorie;
+    private String categorie;
 
-    public Artikel(){}
-
-    public Artikel(String naam, BigDecimal prijs, Soort soort, Categorie categorie) {
-        this(naam, prijs, soort, categorie, null);
+    public Artikel(String naam, BigDecimal prijs, String omschrijving) {
+        this(naam, prijs, Soort.ONBEKEND, omschrijving, "ONBEKEND");
     }
 
-    public Artikel(String naam, BigDecimal prijs, Soort soort, Categorie categorie, String omschrijving) {
+    public Artikel(String naam, BigDecimal prijs, Soort soort, String omschrijving, String categorie) {
         this.naam = naam;
         this.prijs = prijs;
         this.soort = soort;
-        this.categorie = categorie;
-        setCategorie(categorie);
         this.omschrijving = omschrijving;
+        this.categorie = categorie;
     }
 
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
-        categorie.addArtikel(this);
-    }
 }

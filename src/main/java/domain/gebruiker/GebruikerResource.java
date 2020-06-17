@@ -6,8 +6,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.Serializable;
 
-@Produces(MediaType.APPLICATION_JSON)
 @Path("gebruikers")
+@Produces(MediaType.APPLICATION_JSON)
 public class GebruikerResource implements Serializable {
 
     @Inject

@@ -2,6 +2,7 @@ package domain.artikel;
 
 import domain.categorie.CategorieDao;
 import domain.categorie.Categorie;
+import domain.gebruiker.Gebruiker;
 import util.Logger;
 
 import javax.inject.Inject;
@@ -28,4 +29,23 @@ public class ArtikelService {
         return artikelen.get(id);
     }
 
+    public Soort stringToSoort(String input) {
+        input = input.trim().toLowerCase();
+
+        if (input.equals("dienst")) {
+            return Soort.DIENST;
+        } else if (input.equals("product")) {
+            return Soort.PRODUCT;
+        } else {
+            return Soort.ONBEKEND;
+        }
+    }
+
+    public Artikel nieuwArtikel(String naam, BigDecimal prijs, Soort soort, String omschrijving, String categorie) {
+        return new Artikel(naam, prijs, soort, omschrijving, categorie);
+    }
+
+    public void artikelToevoegenAanDatabase(Artikel artikel) {
+        artikelDao.insert(artikel);
+    }
 }
