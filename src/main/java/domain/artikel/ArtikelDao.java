@@ -1,25 +1,30 @@
 package domain.artikel;
 
+import lombok.NoArgsConstructor;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
-//TODO: lijst met producten tonen aan domain.gebruiker.
+//TODO: lijst met producten tonen aan gebruiker.
+
+@NoArgsConstructor
+@Stateless
 public class ArtikelDao {
-    private final EntityManager em;
 
-    public ArtikelDao(EntityManager em) {
-        this.em = em;
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     // CREATE (INSERT)
     public void insert(Artikel a) {
-        em.getTransaction().begin();
         em.persist(a);
-        em.getTransaction().commit();
     }
 
     // READ (SELECT)
-    public Artikel find(int id) {
+    public Artikel find(Long id) {
         return em.find(Artikel.class, id);
     }
 
@@ -29,11 +34,14 @@ public class ArtikelDao {
         return query.getSingleResult();
     }
 
+    public List<Artikel> selectAll() {
+        TypedQuery<Artikel> query = em.createNamedQuery("SELECT a FROM Artikel a", Artikel.class);
+        return query.getResultList();
+    }
+
     // UPDATE
     public Artikel update(Artikel a) {
-        em.getTransaction().begin();
         Artikel merged = em.merge(a);
-        em.getTransaction().commit();
         return merged;
     }
 
@@ -41,9 +49,7 @@ public class ArtikelDao {
     public void delete(String naam) {
         Artikel select = select(naam);
         if (select != null) {
-            em.getTransaction().begin();
             em.remove(select);
-            em.getTransaction().commit();
         }
     }
 }

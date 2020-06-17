@@ -2,8 +2,13 @@ package domain.artikel;
 
 import domain.categorie.CategorieDao;
 import domain.categorie.Categorie;
+import domain.gebruiker.Gebruiker;
+import util.Logger;
 
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -11,55 +16,36 @@ import java.util.Scanner;
 import static util.Util.mysql;
 
 public class ArtikelService {
-    private final Scanner scanner = new Scanner(System.in);
 
-    public String ontvangGebruikersInvoer_naam() {
-        return scanner.nextLine().toLowerCase().trim();
+    @Inject
+    private ArtikelDao artikelDao;
+
+    List<Artikel> artikelen = new ArrayList<>();
+
+    public ArtikelService() {
     }
 
-    public String ontvangGebruikersInvoer_omschrijving() {
-        Scanner s = new Scanner(System.in);
-        return s.nextLine();
+    public Artikel get(int id) {
+        return artikelen.get(id);
     }
 
-    public int ontvangGebruikersInvoer_int() throws InputMismatchException {
-        try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
-            throw new InputMismatchException();
-        }
-    }
+    public Soort stringToSoort(String input) {
+        input = input.trim().toLowerCase();
 
-    public BigDecimal ontvangGebruikersInvoer_prijs() throws InputMismatchException {
-        try {
-            return scanner.nextBigDecimal();
-        } catch (InputMismatchException e) {
-            throw new InputMismatchException();
-        }
-    }
-
-    public Soort ontvangGebruikersInvoer_Soort() {
-        String input = scanner.nextLine().toLowerCase().trim();
-
-        if (input.equals("product")) {
-            return Soort.PRODUCT;
-        } else if (input.equals("dienst")) {
+        if (input.equals("dienst")) {
             return Soort.DIENST;
+        } else if (input.equals("product")) {
+            return Soort.PRODUCT;
         } else {
             return Soort.ONBEKEND;
         }
     }
 
-    public List<Categorie> toonAlleCategorien() {
-        CategorieDao categorieDao = new CategorieDao(mysql());
-
-        return categorieDao.selectAlleCategorieen();
+    public Artikel nieuwArtikel(String naam, BigDecimal prijs, Soort soort, String omschrijving, String categorie) {
+        return new Artikel(naam, prijs, soort, omschrijving, categorie);
     }
 
-    public void nieuwArtikel(String naam, BigDecimal prijs, Soort soort, Categorie categorie, String omschrijving) {
-        ArtikelDao artikelDao = new ArtikelDao(mysql());
-
-        artikelDao.insert(new Artikel(naam, prijs, soort, categorie, omschrijving));
+    public void artikelToevoegenAanDatabase(Artikel artikel) {
+        artikelDao.insert(artikel);
     }
-
 }

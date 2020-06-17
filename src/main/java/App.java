@@ -1,12 +1,5 @@
-import frontend.console.SchermHandler;
-import frontend.pagina.StartPagina;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-public class App {
-
-    public static void main(String[] args) {
-        new App() {};
-    }
-
-    App() { new SchermHandler(new StartPagina()); }
-
-}
+@ApplicationPath("")
+public class App extends Application {}

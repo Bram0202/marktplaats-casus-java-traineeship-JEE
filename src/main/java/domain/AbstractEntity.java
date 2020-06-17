@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
+
     @Id @GeneratedValue
     protected Long id;
 
