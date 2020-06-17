@@ -11,7 +11,6 @@ public class GebruikerService {
         if (gebruikerDao.select(emailadres) != null) {
             return gebruikerDao.select(emailadres);
         } else {
-            // TODO: return iets anders dan null.
             return null;
         }
     }
